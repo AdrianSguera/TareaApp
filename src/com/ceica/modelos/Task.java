@@ -96,12 +96,12 @@ public class Task extends ModeloBase{
 
     @Override
     protected String getNombreTabla() {
-        return "tasks";
+        return "users_tasks";
     }
 
     public static List<Task> getTasksBD() {
         List<Task> taskList = new ArrayList<>();
-        List<Object> objectList = new Task().leerTodos("inner join users on tasks.iduser=users.iduser inner join roles on roles.idrol=users.idrol");
+        List<Object> objectList = new Task().leerTodos();
         for (Object obj : objectList) {
             Object[] objects = (Object[]) obj;
             Task task = new Task();
@@ -114,10 +114,10 @@ public class Task extends ModeloBase{
             task.setDeadline((LocalDateTime) objects[4]);
             task.setStatus((Integer) objects[5]!=0);
             user.setId((int) objects[6]);
-            user.setUsername((String) objects[8]);
-            user.setPassword((String) objects[9]);
-            rol.setId((int) objects[10]);
-            rol.setDescription((String) objects[12]);
+            user.setUsername((String) objects[7]);
+            user.setPassword((String) objects[8]);
+            rol.setId((int) objects[9]);
+            rol.setDescription((String) objects[10]);
             user.setRol(rol);
             task.setUser(user);
             taskList.add(task);

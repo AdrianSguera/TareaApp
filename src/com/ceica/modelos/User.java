@@ -64,12 +64,12 @@ public class User extends ModeloBase{
 
     @Override
     protected String getNombreTabla() {
-        return "users";
+        return "users_roles";
     }
 
     public static List<User> getUsersBD() {
         List<User> userList = new ArrayList<>();
-        List<Object> objectList = new User().leerTodos("inner join roles on roles.idrol=users.idrol");
+        List<Object> objectList = new User().leerTodos();
         for (Object obj : objectList) {
             Object[] objects = (Object[]) obj;
             User user = new User();
@@ -78,7 +78,7 @@ public class User extends ModeloBase{
             user.setUsername((String) objects[1]);
             user.setPassword((String) objects[2]);
             rol.setId((int) objects[3]);
-            rol.setDescription((String) objects[5]);
+            rol.setDescription((String) objects[4]);
             user.setRol(rol);
             userList.add(user);
         }

@@ -77,4 +77,20 @@ public class AppController {
         return new Task().modificar("create_time = ? WHERE idtask = ?", dato, idTask);
     }
 
+    public boolean changeDeadlineTask(int idTask, LocalDateTime dato) {
+        return new Task().modificar("deadline = ? WHERE idtask = ?", dato, idTask);
+    }
+
+    public boolean changeStatusTask(int idTask, boolean dato) {
+        int truedato = 0;
+        if (dato)
+            truedato = 1;
+        return new Task().modificar("status = ? WHERE idtask = ?", truedato, idTask);
+    }
+
+    public boolean changeUserTask(int idTask, User dato) {
+        return new Task().modificar("iduser = ?, username = ?, password = ?, idrol = ?, description = ? " +
+                "WHERE idtask = ?", dato.getId(), dato.getUsername(), dato.getPassword(), dato.getRol().getId(),
+                dato.getRol().getDescription(), idTask);
+    }
 }
