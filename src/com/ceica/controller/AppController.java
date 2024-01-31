@@ -5,24 +5,25 @@ import com.ceica.modelos.Task;
 import com.ceica.modelos.User;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AppController {
-    private boolean admin;
+    private User userLogged;
 
     public AppController() {
 
     }
 
-    private boolean isAdmin(String usu, String pass) {
-        List<User> userList = User.getUsersBD();
-        Optional<Integer> admin = userList.stream()
-                .filter(user -> usu.equals(user.getUsername()) && pass.equals(user.getPassword()))
-                .map(user -> user.getRol().getId())
-                .findFirst();
-        return admin.isPresent() && admin.get() == 2;
+    public User getUserLogged() {
+        return userLogged;
+    }
+
+    public void setUserLogged(User userLogged) {
+        this.userLogged = userLogged;
+    }
+
+    public boolean isAdmin(User userLogged) {
+        return userLogged.getRol().getId()==2;
     }
 
     public List<User> getUsers(){

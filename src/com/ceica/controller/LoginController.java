@@ -11,4 +11,13 @@ public class LoginController {
         return userList.stream()
                 .anyMatch(usuario -> usu.equals(usuario.getUsername()) && pass.equals(usuario.getPassword()));
     }
+
+    public static User getUser(String usu, String pass){
+        List<User> userList = User.getUsersBD();
+        for (User user : userList){
+            if (usu.equals(user.getUsername())&&pass.equals(user.getPassword()))
+                return user;
+        }
+        return null;
+    }
 }
