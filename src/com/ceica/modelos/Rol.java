@@ -58,4 +58,9 @@ public class Rol extends ModeloBase{
     protected String getNombreTabla() {
         return "roles";
     }
+
+    @Override
+    protected String getVista() {
+        return null;
+    }
 }

@@ -31,6 +31,8 @@ public abstract class ModeloBase {
 
     protected abstract String getNombreTabla();
 
+    protected abstract String getVista();
+
     public boolean insertar(String consulta, Object... parametros) {
         consulta = "insert into " + getNombreTabla() + " " + consulta;
         return ejecutarQuery(consulta, parametros);
@@ -48,7 +50,7 @@ public abstract class ModeloBase {
 
     protected List<Object> leerTodos() {
         List<Object> objectList = new ArrayList<>();
-        String sql = "SELECT * FROM " + getNombreTabla();
+        String sql = "SELECT * FROM " + getVista();
         try (Connection connection = DriverManager.getConnection(URL, USUARIO, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {

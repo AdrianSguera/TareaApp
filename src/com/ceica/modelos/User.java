@@ -64,6 +64,11 @@ public class User extends ModeloBase{
 
     @Override
     protected String getNombreTabla() {
+        return "users";
+    }
+
+    @Override
+    protected String getVista() {
         return "users_roles";
     }
 

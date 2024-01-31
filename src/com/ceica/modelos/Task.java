@@ -96,6 +96,11 @@ public class Task extends ModeloBase{
 
     @Override
     protected String getNombreTabla() {
+        return "tasks";
+    }
+
+    @Override
+    protected String getVista() {
         return "users_tasks";
     }
 
