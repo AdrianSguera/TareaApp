@@ -18,8 +18,9 @@ public class AppController {
         return userLogged;
     }
 
-    public void setUserLogged(User userLogged) {
-        this.userLogged = userLogged;
+    public boolean login(String usu, String pass) {
+        this.userLogged = User.login(usu, pass);
+        return userLogged != null;
     }
 
     public boolean isAdmin(User userLogged) {
@@ -58,8 +59,8 @@ public class AppController {
         return new User().modificar("username = ? WHERE iduser = ?", dato, idUser);
     }
 
-    public boolean changePasswordUser(int idUser, String dato) {
-        return new User().modificar("password = ? WHERE iduser = ?", dato, idUser);
+    public boolean changePasswordUser(String username, String dato) {
+        return new User().modificar("password = ? WHERE username = ?", dato, username);
     }
 
     public boolean changeRolUser(int idUser, int dato) {

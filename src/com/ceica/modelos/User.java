@@ -2,6 +2,7 @@ package com.ceica.modelos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class User extends ModeloBase{
     private static int idUser = 1;
@@ -88,5 +89,13 @@ public class User extends ModeloBase{
             userList.add(user);
         }
         return userList;
+    }
+
+    public static User login(String usu, String pass) {
+        List<User> userList = User.getUsersBD();
+        Optional<User> userOptional = userList.stream()
+                .filter(user -> usu.equals(user.getUsername()) && pass.equals(user.getPassword()))
+                .findFirst();
+        return userOptional.orElse(null);
     }
 }
